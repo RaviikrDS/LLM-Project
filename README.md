@@ -1,151 +1,245 @@
-# Project Proposal: Multilingual Ticket Classification System Using RAG and LLMs
-**Project Proposal: Multilingual Ticket Classification System Using RAG and LLMs**
+Here is a detailed Requirement Document based on the use case shown in the image titled:
 
-**Submitted by:** [Your Name]  
-**Date:** [Insert Date]  
 
 ---
 
-### 1. **Project Title**
-**Intelligent Ticket Classification System for ServiceNow (Incident, RITM, Change Tickets)**
+Requirement Document: GenAI-Powered Email and Ticket Response Automation System
+
+1. Project Title
+
+Intelligent Email and Ticket Response Automation Using GenAI
+
 
 ---
 
-### 2. **Overview**
-This project aims to develop a scalable and intelligent ticket classification system capable of handling multilingual (English and Spanish) ServiceNow tickets. The system will classify support tickets into categories and subcategories using a hybrid approach combining Retrieval-Augmented Generation (RAG) and Large Language Models (LLMs).
+2. Objective
+
+Leverage GenAI to draft context-aware responses to service tickets and emails by using historical data, SOPs, and relevant documents. The system should automate classification, prioritization, and response generation for emails and tickets to reduce turnaround time, human error, and manual effort.
+
 
 ---
 
-### 3. **Problem Statement**
-ServiceNow tickets (Incidents, RITMs, and Change Requests) are often manually triaged and categorized, leading to:
-- High manual effort
-- Inconsistent classifications
-- Slower resolution times
+3. Scope
 
-A multilingual, automated classifier can significantly reduce these inefficiencies.
+Automate email/ticket classification, prioritization, and response generation.
 
----
+Reduce turnaround time (TAT) for response.
 
-### 4. **Solution Architecture**
+Enable accurate, consistent, and efficient responses based on historical patterns and trained models.
 
-**Key Components:**
-- **Frontend UI**: Upload ticket dump (.csv/.xlsx), view classified results
-- **FastAPI Backend**: Handles API, processing, and prediction
-- **Embedding Engine**: Multilingual embedding model (e.g., MiniLM)
-- **Vector Store**: FAISS/Chroma for retrieval of relevant historical examples
-- **Keyword Dictionary Layer**: English + Spanish keywords per category/subcategory
-- **LLM Inference Layer**: Generates predictions using retrieved examples + definitions
+Integrate with existing ticketing/email systems (e.g., Outlook, ServiceNow, Jira, Zendesk).
 
-**Architecture Flow:**
-1. Upload ticket (any type/language)
-2. Detect language (English/Spanish)
-3. Keyword filtering to narrow categories
-4. Retrieve relevant historical examples from vector DB
-5. Build prompt with context
-6. Query LLM
-7. Return category, subcategory, and confidence score
+Provide auditability and feedback loop for continuous learning.
 
-**Architecture Diagram:**
-[Diagram Rendered in Document Below]
+
 
 ---
 
-### 5. **Features & Capabilities**
-- Multilingual support (English + Spanish)
-- Supports Incident, RITM, and Change Tickets
-- Hybrid RAG + Rule-based classification
-- Confidence-based fallback to keyword logic
-- Plug-and-play ticket-type modules
+4. Expected Outcomes
+
+Categorize incoming emails/tickets based on priority and routing logic.
+
+Provide automated responses based on trained GenAI models.
+
+Access structured historical data from Knowledge Bases (KBs), SOPs, and past tickets.
+
+Achieve at least 5% capacity improvement in human resources involved.
+
+Enable standard responses per category to maintain consistency.
+
+Ensure reduced effort spent on reading/responding manually.
+
+
 
 ---
 
-### 6. **Technology Stack**
-- **Frontend**: Streamlit or React
-- **Backend**: FastAPI (Python)
-- **LLM**: GPT-4 / Mistral / LLaMA (based on use case)
-- **Vector Store**: FAISS / Chroma
-- **Embeddings**: Sentence Transformers (multilingual MiniLM)
-- **Database**: PostgreSQL / SQLite
-- **CI/CD**: GitHub Actions
-- **Containerization**: Docker + Docker Compose
+5. Roadblocks & Mitigations
+
+Roadblock	Mitigation
+
+Time to respond (Turnaround time)	Use GenAI-generated drafts to speed up replies
+Human error	Implement a review workflow to minimize errors
+Variation in responses	Use standard templates & GenAI training on historical data
+No priority classification	Train model for urgency/priority detection
+Capacity involved	Reduce human workload via automation
+Bandwidth and effort on email reading	Use NLP-based summarization and routing
+
+
 
 ---
 
-### 7. **Codebase Folder Structure**
-[Code Tree Rendered in Document Below]
+6. Functional Requirements
+
+6.1 Email/Ticket Ingestion
+
+Ingest incoming emails or tickets via configured inbox or API.
+
+Extract metadata (sender, subject, timestamp).
+
+
+6.2 Categorization & Prioritization
+
+Classify emails into predefined categories (e.g., Technical, HR, Sales, Support).
+
+Detect priority (e.g., Low, Medium, High, Urgent) based on content.
+
+
+6.3 Response Generation
+
+Use GenAI to generate suggested responses based on:
+
+Email context
+
+SOPs, KB articles, historical replies
+
+
+Include editable drafts for human review if needed.
+
+
+6.4 Feedback Loop
+
+Capture user edits and feedback for model fine-tuning.
+
+Store actual responses to improve accuracy.
+
+
+6.5 Dashboard & Analytics
+
+Monitor categorized tickets, response times, and accuracy.
+
+Track automation coverage and user satisfaction.
+
+
 
 ---
 
-### 8. **Current Dataset Assets**
-- 200K labeled Incident Tickets
-- Keyword dictionary for 100+ categories/subcategories
+7. Non-Functional Requirements
 
-These will be used to bootstrap RAG retrieval and guide prompt generation.
+Performance: Sub-second response draft generation.
 
----
+Scalability: Handle high volumes of emails/tickets.
 
-### 9. **Future Scope**
-- Extend to additional ticket types: Problem, Task, HR, etc.
-- Add support for other languages (e.g., Portuguese, French)
-- Build feedback loop for human-in-the-loop correction
-- Integrate with ServiceNow via APIs for real-time classification
-- Create analytics dashboard for category trends
-- Fine-tune LLM with internal ticket data for even higher accuracy
+Security: Data privacy and secure access (especially for sensitive content).
+
+Compliance: Adhere to organizational data governance standards.
+
+Availability: 99.9% uptime.
+
+
 
 ---
 
-### 10. **Hardware Requirements for Server Deployment**
-- **CPU**: 8+ cores (Intel Xeon or AMD Ryzen recommended)
-- **RAM**: 32–64 GB (for large batch processing)
-- **GPU**: (Optional) NVIDIA A10 / T4 / RTX 3090 for LLM inference locally
-- **Disk**: 200 GB SSD minimum
-- **Network**: 1 Gbps
-- **OS**: Ubuntu 20.04+ or Amazon Linux 2
+8. 90-Day Roadmap to Production
+
+Day 0 – 15: Planning & Strategy
+
+Identify KPIs and perform data analysis.
+
+Define use cases and category mapping.
+
+Governance and compliance checks.
+
+Select GenAI models and tech stack.
+
+Assemble team and build POC.
+
+
+Day 15 – 30: Design & Approvals
+
+Detailed architecture and LLD (Low-Level Design).
+
+Submit GenAI governance and security approvals.
+
+Incorporate early feedback and iterate POC.
+
+
+Day 30 – 60: Testing & Development
+
+Develop and test core solution.
+
+Train models on historical data and SOPs.
+
+Build UI (if applicable) and integrations.
+
+
+Day 60 – 75: Pre-Production
+
+Set up licensing and production infrastructure.
+
+Perform integration testing and UAT.
+
+Onboard users and admin team.
+
+
+Day 75 – 90: Launch & Fine-tuning
+
+Go-live with soft launch.
+
+Monitor performance and collect feedback.
+
+Make adjustments based on reception.
+
+
 
 ---
 
-### 11. **Recommended Open-Source Models**
+9. Data Requirements
 
-#### **Embedding Models (Multilingual)**
-| Model | Language Support | Notes |
-|-------|------------------|-------|
-| `paraphrase-multilingual-MiniLM-L12-v2` | English, Spanish, 50+ | ✅ Fast and accurate, recommended |
-| `distiluse-base-multilingual-cased-v2` | 15+ languages | Good balance |
-| `LaBSE` | 100+ | Large, high-quality |
+Historical tickets and email conversations.
 
-#### **LLMs for Inference (Multilingual)**
-| Model | Size | GPU | Notes |
-|-------|------|-----|-------|
-| `Mistral-7B Instruct` | 7B | ✅ | Best open-source for English/Spanish |
-| `LLaMA 3 8B Instruct` | 8B | ✅ | Meta's latest, great quality |
-| `Mixtral 8x7B` | 45B | High-end GPU | Very powerful |
-| `Phi-2 / Phi-3-mini` | Tiny | CPU-friendly | Lightweight fallback |
+Knowledge Base (KB) articles and SOP documents.
 
-> Best combo: MiniLM + Mistral or LLaMA 3 for classification with RAG
+Labeled data for training classification and prioritization models.
+
+
 
 ---
 
-### 12. **Security and Data Protection Considerations**
-This project will ensure full compliance with enterprise security and privacy standards:
-- ✅ Role-based access control (RBAC) for UI/API endpoints
-- ✅ HTTPS for all communication (frontend ↔ backend ↔ vector DB)
-- ✅ All data encrypted at rest and in transit
-- ✅ No PII stored without masking (only metadata and anonymized text)
-- ✅ Secure Docker images with vulnerability scanning
-- ✅ API key/token-based access control for model inference
-- ✅ LLM interactions logged and auditable for compliance
-- ✅ Option to self-host models to avoid cloud data leakage
-- ✅ Periodic security audits and dependency scans
+10. Assumptions
+
+Access to required email/ticket data.
+
+Internal stakeholders are available for feedback and approvals.
+
+Infrastructure for GenAI deployment is provisioned.
+
+
 
 ---
 
-### 13. **Conclusion**
-This project provides a forward-compatible, modular solution for automated, multilingual ticket classification. It will reduce manual overhead, improve SLA compliance, support security governance, and serve as a foundation for broader ITSM automation.
+11. Dependencies
+
+Email/Ticketing platforms (e.g., Outlook, ServiceNow, etc.).
+
+Access to organizational KB/SOPs.
+
+GenAI model (e.g., OpenAI GPT-4 via Azure, Vertex AI, etc.).
+
+Integration APIs.
+
+
 
 ---
 
-**Approval:**  
-**Manager Name:** ____________________  
-**Signature:** ________________________  
-**Date:** _____________________________
+12. Tools & Technology Stack (Proposed)
+
+Backend: Python (FastAPI), Node.js
+
+Frontend (Optional): React or Streamlit
+
+AI/LLM: OpenAI GPT-4o or Azure OpenAI
+
+Email API: Outlook/Gmail API
+
+Database: PostgreSQL / MongoDB
+
+Deployment: Azure / GCP / AWS
+
+Version Control & CI/CD: GitHub + GitHub Actions
+
+
+
+---
+
+Would you like this requirement document as a downloadable PDF, Word, or Excel file?
 
